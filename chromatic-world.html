@@ -329,49 +329,36 @@ footer{padding:3rem 1.5rem;text-align:center;border-top:1px solid rgba(255,255,2
 .foot-sub{font-size:.62rem;color:rgba(255,255,255,.2);letter-spacing:.2em;text-transform:uppercase;line-height:1.7;}
 .foot-members{margin-top:.7rem;font-size:.58rem;color:rgba(255,255,255,.12);letter-spacing:.25em;}
 
-/* ══════════════════════════════════
-   GACHA OVERLAY — MOBILE FIXED
-══════════════════════════════════ */
-#gacha-overlay{
-  display:none;position:fixed;inset:0;z-index:200;
-  background:rgba(4,3,14,.96);
-  align-items:center;justify-content:center;flex-direction:column;
-  gap:1.5rem;padding:1.5rem;overflow-y:auto;
-}
+/* ═══ GACHA OVERLAY ═══ */
+#gacha-overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(4,3,14,.96);align-items:center;justify-content:center;flex-direction:column;gap:1.5rem;}
 #gacha-overlay.active{display:flex;}
-.gacha-title{
-  font-family:'Cinzel',serif;
-  font-size:clamp(.75rem,3.5vw,1rem);
-  letter-spacing:.25em;color:rgba(240,236,228,.55);
-  text-transform:uppercase;text-align:center;padding:0 .5rem;
-}
-.g-scene{width:min(260px,72vw);aspect-ratio:848/1237;perspective:1000px;}
-.g-wrap{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .75s cubic-bezier(.175,.885,.32,1.275);}
-.g-wrap.flipped{transform:rotateY(180deg);}
-.g-face{position:absolute;inset:0;border-radius:10px;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden;}
-.g-back{background:linear-gradient(135deg,#110830,#0a1530);border:1px solid rgba(139,92,246,.4);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;cursor:pointer;}
-.g-back-orb{width:58px;height:58px;border:2px solid rgba(139,92,246,.55);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;animation:rotateSlow 8s linear infinite;}
-.g-back-logo{font-family:'Cinzel',serif;font-size:.85rem;color:rgba(139,92,246,.75);letter-spacing:.18em;}
-.g-back-hint{font-size:.58rem;letter-spacing:.22em;color:rgba(255,255,255,.28);text-transform:uppercase;animation:pulseFade 2s infinite;}
-.g-front{transform:rotateY(180deg);background:#0a0618;position:relative;}
-.g-border{position:absolute;inset:-2px;border-radius:12px;background:conic-gradient(from 0deg,var(--cc,#8b5cf6),#f472b6,#22d3ee,var(--cc,#8b5cf6));z-index:0;animation:spinGrad 4s linear infinite;}
-.g-front-inner{position:absolute;inset:2px;border-radius:9px;overflow:hidden;background:#0a0618;z-index:1;display:flex;align-items:center;justify-content:center;}
-.g-front-img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;}
-.g-front-ph{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;width:100%;height:100%;color:rgba(255,255,255,.22);font-size:.6rem;letter-spacing:.16em;text-align:center;padding:1rem;}
-.g-front-ph .gp-icon{font-size:2.5rem;}
-.g-particles{position:absolute;inset:0;pointer-events:none;border-radius:10px;overflow:hidden;z-index:2;}
-.g-actions{display:flex;gap:.7rem;flex-wrap:wrap;justify-content:center;}
-.g-btn{
-  padding:.6rem 1.2rem;background:transparent;
-  border:1px solid rgba(255,255,255,.22);color:rgba(255,255,255,.65);
-  font-family:'Raleway',sans-serif;font-size:.67rem;letter-spacing:.18em;
-  text-transform:uppercase;cursor:pointer;border-radius:4px;transition:all .3s;
-  touch-action:manipulation;
-  min-height:44px;
-}
+.gacha-title{font-family:'Cinzel',serif;font-size:clamp(.85rem,2vw,1.1rem);letter-spacing:.3em;color:rgba(240,236,228,.55);text-transform:uppercase;text-align:center;padding:0 1rem;min-height:2em;}
+
+/* SLOT MACHINE STRIP */
+.g-stage{width:min(290px,78vw);aspect-ratio:848/1237;position:relative;border-radius:12px;overflow:hidden;border:2px solid rgba(255,255,255,.1);background:#0a0618;box-shadow:0 0 60px rgba(139,92,246,.2);}
+.g-strip{position:absolute;inset:0;display:flex;flex-direction:column;}
+.g-strip-item{width:100%;flex-shrink:0;aspect-ratio:848/1237;position:relative;}
+.g-strip-item img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;}
+.g-strip-item-ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#110830,#0a1530);color:rgba(255,255,255,.3);font-size:2.5rem;}
+
+/* border animasi */
+.g-border-anim{position:absolute;inset:-2px;border-radius:14px;background:conic-gradient(from 0deg,var(--cc,#8b5cf6),#f472b6,#22d3ee,var(--cc,#8b5cf6));z-index:-1;animation:spinGrad 3s linear infinite;opacity:0;transition:opacity .4s;}
+.g-stage.rolling .g-border-anim{opacity:1;}
+.g-stage.landed .g-border-anim{opacity:1;}
+
+/* shine overlay saat rolling */
+.g-shine{position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.12) 0%,transparent 40%,transparent 60%,rgba(255,255,255,.06) 100%);pointer-events:none;opacity:0;transition:opacity .3s;z-index:3;}
+.g-stage.rolling .g-shine{opacity:1;}
+
+/* particles */
+.g-particles{position:absolute;inset:0;pointer-events:none;z-index:4;overflow:hidden;border-radius:10px;}
+
+.g-actions{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center;}
+.g-btn{padding:.65rem 1.4rem;background:transparent;border:1px solid rgba(255,255,255,.22);color:rgba(255,255,255,.65);font-family:'Raleway',sans-serif;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;border-radius:4px;transition:all .3s;}
 .g-btn.gold{border-color:var(--gold);color:var(--gold);}
 .g-btn:hover{background:rgba(255,255,255,.07);}
 .g-btn.gold:hover{background:rgba(232,184,75,.1);}
+.g-btn:disabled{opacity:.3;cursor:not-allowed;}
 
 /* ── TOAST ── */
 #toast{
@@ -494,9 +481,9 @@ footer{padding:3rem 1.5rem;text-align:center;border-top:1px solid rgba(255,255,2
         <div class="member-name">Jihan Nailah<br>Shobriyyah</div>
         <div class="member-role">Clan Hijau</div>
       </div>
-      <div class="member-card reveal" style="--mc:rgba(139,92,246,.7);">
+      <div class="member-card reveal" style="--mc:rgba(246, 92, 92, 0.7);">
         <div class="member-avatar"><img src="assets/members/clancy.jpg" alt="Clancy"></div>
-        <div class="member-alias" style="color:#8b5cf6;">Clancy</div>
+        <div class="member-alias" style="color:#f65c5c;">Clancy</div>
         <div class="member-name">Gilang Satriya<br>Pamungkas</div>
         <div class="member-role">Clan Merah</div>
       </div>
@@ -506,9 +493,9 @@ footer{padding:3rem 1.5rem;text-align:center;border-top:1px solid rgba(255,255,2
         <div class="member-name">M. Faaiz<br>Nashrullah</div>
         <div class="member-role">Clan Coklat</div>
       </div>
-      <div class="member-card reveal" style="--mc:rgba(244,114,182,.7);">
+      <div class="member-card reveal" style="--mc:rgba(191, 56, 198, 0.7);">
         <div class="member-avatar"><img src="assets/members/onyx.jpg" alt="Onyx"></div>
-        <div class="member-alias" style="color:#f472b6;">Onyx</div>
+        <div class="member-alias" style="color:#9724c0;">Onyx</div>
         <div class="member-name">Diah Dwi<br>Sundari</div>
         <div class="member-role">Cosmic Desolator</div>
       </div>
@@ -532,7 +519,7 @@ footer{padding:3rem 1.5rem;text-align:center;border-top:1px solid rgba(255,255,2
       <span class="fb-icon">📖</span>
       <h3>ChromatiC WorlD — Flipbook</h3>
       <p>Jelajahi seluruh karya dalam format flipbook interaktif yang imersif.<br>Klik tombol di bawah untuk membuka.</p>
-      <a href="#GANTI_LINK_FLIPBOOK" class="fb-link" target="_blank">✦ Buka Flipbook</a>
+      <a href="https://online.flippingbook.com/view/415136593/" class="fb-link" target="_blank">✦ Buka Flipbook</a>
     </div>
   </div>
 </section>
@@ -547,28 +534,22 @@ footer{padding:3rem 1.5rem;text-align:center;border-top:1px solid rgba(255,255,2
 <!-- GACHA OVERLAY -->
 <div id="gacha-overlay">
   <div class="gacha-title" id="gacha-title">✦ Tarik Kartu Keberuntungan ✦</div>
-  <div class="g-scene">
-    <div class="g-wrap" id="gWrap">
-      <div class="g-face g-back" onclick="flipCard()">
-        <div class="g-back-orb">✦</div>
-        <div class="g-back-logo">ChromatiC</div>
-        <div class="g-back-hint">Ketuk untuk membuka</div>
-      </div>
-      <div class="g-face g-front">
-        <div class="g-border" id="gBorder"></div>
-        <div class="g-front-inner">
-          <div class="g-particles" id="gPart"></div>
-          <div id="gImg" style="width:100%;height:100%;"></div>
-        </div>
-      </div>
+  <div style="position:relative;">
+    <div class="g-border-anim" id="gBorder"></div>
+    <div class="g-stage" id="gStage">
+      <div class="g-strip" id="gStrip"></div>
+      <div class="g-shine"></div>
+      <div class="g-particles" id="gPart"></div>
     </div>
   </div>
   <div class="g-actions">
-    <button class="g-btn" onclick="resetGacha()">↺ Tarik Lagi</button>
-    <button class="g-btn gold" onclick="shareCard()">⬡ Bagikan</button>
+    <button class="g-btn gold" id="gPullBtn" onclick="pullGacha()">✦ Tarik!</button>
+    <button class="g-btn" id="gAgainBtn" onclick="resetGacha()" style="display:none;">↺ Tarik Lagi</button>
+    <button class="g-btn" id="gShareBtn" onclick="shareCard()" style="display:none;">⬡ Bagikan</button>
     <button class="g-btn" onclick="closeGacha()">✕ Tutup</button>
   </div>
 </div>
+
 <div id="toast">✓ Berhasil disalin!</div>
 
 <div id="lightbox">
@@ -657,6 +638,7 @@ const CHARACTERS = [
     layout:"sienna",
     posters:[
       { type:"landscape", img:"assets/posters/sienna-landscape.jpg",  label:"Sienna · Landscape A4" },
+      { type:"landscape", img:"assets/posters/sienna-landscape-2.jpg",  label:"Sienna · Landscape A4" },
       { type:"portrait",  img:"assets/posters/sienna-portrait-1.jpg", label:"Sienna · Portrait 1"   },
       { type:"portrait",  img:"assets/posters/sienna-portrait-2.jpg", label:"Sienna · Portrait 2"   },
       { type:"portrait",  img:"assets/posters/sienna-portrait-3.jpg", label:"Sienna · Portrait 3"   },
@@ -667,7 +649,6 @@ const CHARACTERS = [
       { img:"assets/cards/sienna.png",       label:"Sienna",       hidden:false },
       { img:"assets/cards/sienna-mutan.png", label:"Sienna Mutan", hidden:false },
       { img:"assets/cards/mimbo.png",        label:"Mimbo",        hidden:false },
-      { img:"assets/cards/void-serpent.png", label:"Void Serpent", hidden:false },
     ]
   },
   {
@@ -682,6 +663,7 @@ const CHARACTERS = [
     ],
     cards:[
       { img:"assets/cards/onyx.png", label:"Onyx", hidden:false },
+      { img:"assets/cards/void-serpent.png", label:"Void Serpent", hidden:false },
     ]
   },
 ];
@@ -709,12 +691,12 @@ function buildCardThumb(c) {
 
 function buildSection(char) {
   let posterHtml = '';
-  if (char.layout === 'sienna') {
-    const ls = char.posters[0];
-    const pts = char.posters.slice(1);
+if (char.layout === 'sienna') {
+    const ls  = char.posters.filter(p => p.type === 'landscape');
+    const pts = char.posters.filter(p => p.type === 'portrait');
     posterHtml = `
       <div class="poster-grid sienna-layout">
-        <div class="poster-frame landscape reveal">${buildPosterInner(ls.img, ls.label)}</div>
+        ${ls.map(p => `<div class="poster-frame landscape reveal">${buildPosterInner(p.img, p.label)}</div>`).join('')}
         <div class="sienna-portrait-row">
           ${pts.map(p=>`<div class="poster-frame portrait reveal">${buildPosterInner(p.img, p.label)}</div>`).join('')}
         </div>
@@ -881,47 +863,133 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
   });
 });
 
-/* ═══════════════════════════════════════════════════════════════
-   GACHA
-══════════════════════════════════════════════════════════════ */
-let cc=null,flipped=false;
+//* ═══ GACHA ═══ */
+let cc = null, isRolling = false;
 
-function openGacha(){document.getElementById('gacha-overlay').classList.add('active');resetGacha();}
-function closeGacha(){document.getElementById('gacha-overlay').classList.remove('active');}
+function openGacha() {
+  document.getElementById('gacha-overlay').classList.add('active');
+  resetGacha();
+}
+function closeGacha() {
+  document.getElementById('gacha-overlay').classList.remove('active');
+}
 
-function resetGacha(){
-  flipped=false;
-  document.getElementById('gWrap').classList.remove('flipped');
-  document.getElementById('gacha-title').textContent='✦ Tarik Kartu Keberuntungan ✦';
-  document.getElementById('gPart').innerHTML='';
-  const normals=CARDS.filter(c=>!c.hidden);
-  const hiddens=CARDS.filter(c=>c.hidden);
-  const hChance=Math.min(.1*hiddens.length,.3);
-  cc=(Math.random()<hChance&&hiddens.length)?hiddens[~~(Math.random()*hiddens.length)]:normals[~~(Math.random()*normals.length)];
-  document.getElementById('gBorder').style.setProperty('--cc',cc.color||'#8b5cf6');
-  const wrap=document.getElementById('gImg');wrap.innerHTML='';
-  if(cc.img){const img=new Image();img.className='g-front-img';img.style.cssText='width:100%;height:100%;object-fit:cover;object-position:top;border-radius:8px;display:block;opacity:0;transition:opacity .4s;';img.onload=()=>{img.style.opacity='1';};img.onerror=()=>{wrap.innerHTML='';showPH(wrap);};img.src=cc.img;wrap.appendChild(img);}else{showPH(wrap);}
-}
-function showPH(wrap){wrap.innerHTML=`<div class="g-front-ph"><span class="gp-icon">${cc.icon||'🃏'}</span><span style="font-size:.63rem;letter-spacing:.16em;color:rgba(255,255,255,.35);">${cc.name}</span></div>`;}
+function resetGacha() {
+  isRolling = false;
+  const stage = document.getElementById('gStage');
+  stage.classList.remove('rolling','landed');
+  document.getElementById('gPart').innerHTML = '';
+  document.getElementById('gacha-title').textContent = '✦ Tarik Kartu Keberuntungan ✦';
+  document.getElementById('gPullBtn').style.display = '';
+  document.getElementById('gPullBtn').disabled = false;
+  document.getElementById('gAgainBtn').style.display = 'none';
+  document.getElementById('gShareBtn').style.display = 'none';
+  document.getElementById('gBorder').style.setProperty('--cc','#8b5cf6');
 
-function flipCard(){
-  if(flipped)return;flipped=true;
-  document.getElementById('gWrap').classList.add('flipped');
-  const rare=cc.hidden?' ✦ LANGKA ✦':'';
-  document.getElementById('gacha-title').textContent=`✦ Kamu dapat: ${cc.name}${rare} ✦`;
-  spawnParticles();
+  const realCards = CARDS.filter(c => c.img);
+  const strip = document.getElementById('gStrip');
+  strip.innerHTML = '';
+  strip.style.transition = 'none';
+  strip.style.transform  = 'translateY(0)';
+
+  const pool = [];
+  for (let i = 0; i < 30; i++) {
+    pool.push(realCards[~~(Math.random() * realCards.length)]);
+  }
+  pool.forEach(card => {
+    const item = document.createElement('div');
+    item.className = 'g-strip-item';
+    if (card.img) {
+      const img = document.createElement('img');
+      img.src = card.img;
+      img.alt = card.name;
+      item.appendChild(img);
+    } else {
+      item.innerHTML = `<div class="g-strip-item-ph"><span>${card.icon||'🃏'}</span></div>`;
+    }
+    strip.appendChild(item);
+  });
 }
-function spawnParticles(){
-  const cont=document.getElementById('gPart');
-  const cols=[cc.color,'#e8b84b','#f472b6','#fff'];
-  for(let i=0;i<28;i++){const p=document.createElement('div');const a=Math.random()*360,d=60+Math.random()*120;const tx=Math.cos(a*Math.PI/180)*d+'px',ty=Math.sin(a*Math.PI/180)*d+'px';const sz=3+Math.random()*5;p.style.cssText=`position:absolute;border-radius:50%;width:${sz}px;height:${sz}px;background:${cols[~~(Math.random()*cols.length)]};top:50%;left:50%;--tx:${tx};--ty:${ty};animation:particleFly ${.5+Math.random()*.9}s ${Math.random()*.3}s forwards;`;cont.appendChild(p);}
+
+function pullGacha() {
+  if (isRolling) return;
+  isRolling = true;
+  document.getElementById('gPullBtn').disabled = true;
+
+  const normals = CARDS.filter(c=>!c.hidden && c.img);
+  const hiddens = CARDS.filter(c=>c.hidden  && c.img);
+  const allReal = CARDS.filter(c=>c.img);
+  const hChance = Math.min(.1 * hiddens.length, .3);
+  cc = (Math.random() < hChance && hiddens.length)
+    ? hiddens[~~(Math.random() * hiddens.length)]
+    : (normals.length ? normals[~~(Math.random() * normals.length)] : allReal[~~(Math.random() * allReal.length)]);
+  if (!cc) cc = CARDS[~~(Math.random() * CARDS.length)];
+
+  document.getElementById('gBorder').style.setProperty('--cc', cc.color || '#8b5cf6');
+  document.getElementById('gStage').classList.add('rolling');
+
+  const strip = document.getElementById('gStrip');
+  const items = strip.querySelectorAll('.g-strip-item');
+  const lastIdx = items.length - 1;
+  items[lastIdx].innerHTML = '';
+  if (cc.img) {
+    const img = document.createElement('img');
+    img.src = cc.img; img.alt = cc.name;
+    items[lastIdx].appendChild(img);
+  } else {
+    items[lastIdx].innerHTML = `<div class="g-strip-item-ph"><span>${cc.icon||'🃏'}</span></div>`;
+  }
+
+  requestAnimationFrame(()=>{
+    const itemH  = strip.querySelector('.g-strip-item').offsetHeight || document.getElementById('gStage').offsetHeight;
+    const totalH = itemH * lastIdx;
+
+    strip.style.transition = `transform 2s cubic-bezier(0.15,0,0.85,1)`;
+    strip.style.transform  = `translateY(-${totalH * .6}px)`;
+
+    setTimeout(()=>{
+      strip.style.transition = `transform 1.4s cubic-bezier(0.25,0.46,0.45,0.94)`;
+      strip.style.transform  = `translateY(-${totalH}px)`;
+
+      setTimeout(()=>{
+        document.getElementById('gStage').classList.remove('rolling');
+        document.getElementById('gStage').classList.add('landed');
+        const rare = cc.hidden ? ' ✦ KARTU LANGKA ✦' : '';
+        document.getElementById('gacha-title').textContent = `✦ ${cc.name}${rare} ✦`;
+        document.getElementById('gPullBtn').style.display  = 'none';
+        document.getElementById('gAgainBtn').style.display = '';
+        document.getElementById('gShareBtn').style.display = '';
+        isRolling = false;
+        spawnParticles();
+      }, 1500);
+    }, 1200);
+  });
 }
-function shareCard(){
-  const txt=`Aku dapat kartu "${cc.name}" dari ChromatiC WorlD! ✦ ${location.href}`;
-  navigator.clipboard?.writeText(txt);
-  const t=document.getElementById('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);
+
+function spawnParticles() {
+  const cont = document.getElementById('gPart');
+  const cols = [cc.color, '#e8b84b', '#f472b6', '#fff'];
+  for (let i = 0; i < 32; i++) {
+    const p = document.createElement('div');
+    const a = Math.random()*360, d = 80+Math.random()*150;
+    const tx = Math.cos(a*Math.PI/180)*d+'px', ty = Math.sin(a*Math.PI/180)*d+'px';
+    const sz = 3+Math.random()*6;
+    p.style.cssText = `position:absolute;border-radius:50%;width:${sz}px;height:${sz}px;background:${cols[~~(Math.random()*cols.length)]};top:50%;left:50%;--tx:${tx};--ty:${ty};animation:particleFly ${.5+Math.random()*.9}s ${Math.random()*.3}s forwards;`;
+    cont.appendChild(p);
+  }
 }
-document.getElementById('gacha-overlay').addEventListener('click',function(e){if(e.target===this)closeGacha();});
+
+function shareCard() {
+  if (!cc) return;
+  const txt = `✦ Aku dapat kartu *${cc.name}* dari ChromatiC WorlD!\n\nCoba keberuntunganmu juga di sini 👇\n${location.href}`;
+  const url = `https://wa.me/?text=${encodeURIComponent(txt)}`;
+  window.open(url, '_blank');
+}
+
+document.getElementById('gacha-overlay').addEventListener('click', function(e){
+  if(e.target===this) closeGacha();
+});
+
 
 /* ═══ LIGHTBOX ═══ */
 function openLB(src,caption){
